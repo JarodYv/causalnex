@@ -27,7 +27,6 @@
 # limitations under the License.
 """Plot Methods."""
 import re
-import sys
 from collections import namedtuple
 from copy import deepcopy
 from typing import Dict, Tuple
@@ -158,9 +157,6 @@ def color_gradient_string(from_color: str, to_color: str, steps: int) -> str:
     Returns:
         a pygraphviz color gradient string
     """
-
-    if sys.platform == "win32" and steps > 7:
-        steps = 7
 
     color_regex = re.compile(
         r"(#)([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})*"
