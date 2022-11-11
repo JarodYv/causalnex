@@ -105,13 +105,13 @@ class InferenceEngine:
             ValueError: if the Bayesian Network contains isolates, or if a variable name is invalid,
                         or if the CPDs have not been learned yet.
         """
-        bad_nodes = [node for node in bn.nodes if not re.match("^[0-9a-zA-Z_]+$", node)]
-
-        if bad_nodes:
-            raise ValueError(
-                "Variable names must match ^[0-9a-zA-Z_]+$ - please fix the "
-                f"following nodes: {bad_nodes}"
-            )
+        # bad_nodes = [node for node in bn.nodes if not re.match("^[0-9a-zA-Z_]+$", node)]
+        #
+        # if bad_nodes:
+        #     raise ValueError(
+        #         "Variable names must match ^[0-9a-zA-Z_]+$ - please fix the "
+        #         f"following nodes: {bad_nodes}"
+        #     )
 
         if not bn.cpds:
             raise ValueError(
