@@ -283,14 +283,16 @@ class StructureModel(nx.DiGraph):
 
         raise NodeNotFound(f"Node {node} not found in the graph.")
 
-    def threshold_till_dag(self):
+    def threshold_till_dag(self)->float:
         """
         Remove edges with smallest weight until the graph is a DAG.
         Not recommended if the weights have different units.
         """
+        smallest_threshold = 0
         while not nx.algorithms.is_directed_acyclic_graph(self):
-            i, j, _ = min(self.edges(data="weight"), key=lambda x: abs(x[2]))
+            i, j, smallest_threshold = min(self.edges(data="weight"), key=lambda x: abs(x[2]))
             self.remove_edge(i, j)
+        return smallest_threshold
 
     def get_markov_blanket(
         self, nodes: Union[Any, List[Any], Set[Any]]
